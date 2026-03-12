@@ -111,9 +111,9 @@
             z-index: 1001;
         }
 
-        .logo-icon {
-            width: 48px;
-            height: 48px;
+        .logo-icon img{
+            max-width: 50px;
+            max-height: 50px;
             background: var(--gradient-primary);
             border-radius: var(--radius-md);
             display: flex;
@@ -124,6 +124,7 @@
             box-shadow: 0 4px 15px rgba(10, 94, 184, 0.4);
             position: relative;
             overflow: hidden;
+            object-fit: contain;
         }
 
         .logo-icon::after {
@@ -2174,8 +2175,8 @@
 <header class="header" id="header">
     <div class="nav-container">
         <a href="#hero" class="logo">
-            <div class="logo-icon">
-                <i class="fas fa-faucet-drip"></i>
+            <div class="logo-icon img">
+                <img src="images/logo.png" alt="МД">
             </div>
             <div class="logo-text">
                 <span class="logo-name">Мастер Дом</span>
@@ -2862,8 +2863,8 @@
         <div class="footer-grid">
             <div class="footer-brand">
                 <a href="#hero" class="logo">
-                    <div class="logo-icon">
-                        <i class="fas fa-faucet-drip"></i>
+                    <div class="logo-icon img">
+                        <img src="images/logo.png">
                     </div>
                     <div class="logo-text">
                         <span class="logo-name">Мастер Дом</span>

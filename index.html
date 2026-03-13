@@ -1046,6 +1046,7 @@
             cursor: pointer;
             aspect-ratio: 4/3;
             background: var(--gray-200);
+            box-sizing: border-box;
         }
 
         .work-card-image {
@@ -1107,7 +1108,7 @@
             background: rgba(10, 94, 184, 0.3);
             border-radius: var(--radius-full);
             color: #93c5fd;
-            font-size: 18px;
+            font-size: clamp(10px, 2.5vw, 14px);
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.5px;
@@ -1116,15 +1117,36 @@
         }
 
         .work-card-title {
-            font-size: 31px;
+            font-size: clamp(18px, 5vw, 31px);
             font-weight: 700;
             color: var(--white);
-            margin-bottom: 6px;
+            margin-bottom: clamp(4px, 1vw, 6px);
+            line-height: 1.2;
+            word-break: break-word;
+        }
+        
+        @media (max-width: 480px) {
+            .work-card-title {
+            font-size: 18px;
+            }
+            .work-card-desc {
+             display: -webkit-box;
+             -webkit-line-clamp: 2;
+             -webkit-box-orient: vertical;
+              overflow: hidden;        
+            }
+            .work-card-tag {
+             font-size: 10px;
+             padding: 2px 8px;
+             margin-bottom: 6px;
+            letter-spacing: 0.3px;
+            }
         }
 
         .work-card-desc {
-            font-size: 20px;
+            font-size: clamp(14px, 3.5vw, 20px);
             color: rgba(255,255,255,0.6);
+            line-height: 1.4;
         }
 
         .work-card-arrow {

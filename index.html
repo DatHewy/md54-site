@@ -6,6 +6,41 @@
     <title>Мастер Дом — Монтаж промышленной сантехники</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <script>
+      document.getElementById('contactForm').addEventListener('submit', function(e) {
+               e.preventDefault();
+               
+               const formData = new FormData(this);
+               const submitBtn = this.querySelector('.form-submit');
+               const originalHTML = submitBtn.innerHTML;
+               
+               // Блокируем кнопку
+               submitBtn.disabled = true;
+               submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Отправка...';
+               
+               fetch('send.php', {
+                   method: 'POST',
+                   body: formData
+               })
+               .then(response => response.json())
+               .then(data => {
+                   if (data.success) {
+                       alert('✅ Спасибо! Ваша заявка успешно отправлена.\nМы свяжемся с вами в ближайшее время.');
+                       this.reset();
+                   } else {
+                       alert('❌ Ошибка отправки. Пожалуйста, попробуйте позже или позвоните нам.');
+                   }
+               })
+               .catch(error => {
+                   alert('❌ Произошла ошибка. Проверьте подключение к интернету.');
+                   console.error('Error:', error);
+               })
+               .finally(() => {
+                   submitBtn.disabled = false;
+                   submitBtn.innerHTML = originalHTML;
+               });
+           });
+    </script>
     <style>
         :root {
             --primary: #0a5eb8;
@@ -2192,6 +2227,7 @@
         .work-card:nth-child(5) .work-card-image-placeholder { background: linear-gradient(135deg, #d1fae5, #6ee7b7); }
     </style>
 </head>
+
 <body>
 
 <!-- ===== HEADER ===== -->
@@ -2791,33 +2827,33 @@
                 <h3 class="contact-form-title">Оставить заявку</h3>
                 <p class="contact-form-desc">Заполните форму и мы свяжемся с вами в течение 30 минут</p>
 
-                <form id="contactForm">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label class="form-label">Ваше имя</label>
-                            <input type="text" class="form-input" placeholder="Иван Иванов" required>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">Телефон</label>
-                            <input type="tel" class="form-input" placeholder="+7 (___) ___-__-__" required>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">E-mail</label>
-                        <input type="email" class="form-input" placeholder="email@company.ru">
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Опишите ваш проект</label>
-                        <textarea class="form-input" placeholder="Расскажите о вашем объекте, задачах и желаемых сроках..."></textarea>
-                    </div>
-                    <button type="submit" class="form-submit">
-                        <i class="fas fa-paper-plane"></i>
-                        Отправить заявку
-                    </button>
-                    <p class="form-privacy">
-                        Нажимая кнопку, вы соглашаетесь с <a href="#">политикой конфиденциальности</a>
-                    </p>
-                </form>
+                <form id="contactForm" method="POST">
+                     <div class="form-row">
+                         <div class="form-group">
+                             <label class="form-label">Ваше имя</label>
+                             <input type="text" name="name" class="form-input" placeholder="Иван Иванов" required>
+                         </div>
+                         <div class="form-group">
+                             <label class="form-label">Телефон</label>
+                             <input type="tel" name="phone" class="form-input" placeholder="+7 (___) ___-__-__" required>
+                         </div>
+                     </div>
+                     <div class="form-group">
+                         <label class="form-label">E-mail</label>
+                         <input type="email" name="email" class="form-input" placeholder="email@company.ru">
+                     </div>
+                     <div class="form-group">
+                         <label class="form-label">Опишите ваш проект</label>
+                         <textarea name="message" class="form-input" placeholder="Расскажите о вашем объекте, задачах и желаемых сроках..."></textarea>
+                     </div>
+                     <button type="submit" class="form-submit">
+                         <i class="fas fa-paper-plane"></i>
+                         Отправить заявку
+                     </button>
+                     <p class="form-privacy">
+                         Нажимая кнопку, вы соглашаетесь с <a href="#">политикой конфиденциальности</a>
+                     </p>
+                 </form>
             </div>
 
             <div class="contact-info-wrapper reveal reveal-delay-1">
@@ -3184,4 +3220,3 @@
 
 </body>
 </html>
-

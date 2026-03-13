@@ -2234,7 +2234,7 @@
     </div>
 </header>
 
-<!-- ===== HERO SECTION ===== -->
+<!-- ===== Титул ===== -->
 <section class="hero" id="hero">
     <div class="hero-bg">
         <div class="hero-bg-image"></div>
@@ -2344,7 +2344,7 @@
     </div>
 </section>
 
-<!-- ===== VIDEO SECTION ===== -->
+<!-- ===== Видео ===== -->
 <section class="section video-section section-dark" id="video">
     <div class="container">
         <div class="section-header reveal">
@@ -2412,7 +2412,7 @@
     </div>
 </section>
 
-<!-- ===== WORKS / PORTFOLIO ===== -->
+<!-- ===== Работы ===== -->
 <section class="section section-gray" id="works">
     <div class="container">
         <div class="section-header reveal">
@@ -2597,7 +2597,7 @@
     </div>
 </section>
 
-<!-- ===== REVIEWS ===== -->
+<!-- ===== Отзывы ===== -->
 <section class="section section-dark" id="reviews">
     <div class="container">
         <div class="section-header reveal">
@@ -3184,40 +3184,39 @@
     });
 </script>
 <script>
-      document.getElementById('contactForm').addEventListener('submit', function(e) {
-               e.preventDefault();
-               
-               const formData = new FormData(this);
-               const submitBtn = this.querySelector('.form-submit');
-               const originalHTML = submitBtn.innerHTML;
-               
-               // Блокируем кнопку
-               submitBtn.disabled = true;
-               submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Отправка...';
-               
-               fetch('send.php', {
-                   method: 'POST',
-                   body: formData
-               })
-               .then(response => response.json())
-               .then(data => {
-                   if (data.success) {
-                       alert('✅ Спасибо! Ваша заявка успешно отправлена.\nМы свяжемся с вами в ближайшее время.');
-                       this.reset();
-                   } else {
-                       alert('❌ Ошибка отправки. Пожалуйста, попробуйте позже или позвоните нам.');
-                   }
-               })
-               .catch(error => {
-                   alert('❌ Произошла ошибка. Проверьте подключение к интернету.');
-                   console.error('Error:', error);
-               })
-               .finally(() => {
-                   submitBtn.disabled = false;
-                   submitBtn.innerHTML = originalHTML;
-               });
-           });
-    </script>
+document.getElementById('contactForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const formData = new FormData(this);
+    const submitBtn = this.querySelector('.form-submit');
+    const originalHTML = submitBtn.innerHTML;
+    
+    // Блокируем кнопку
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Отправка...';
+    
+    fetch('send.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert('✅ Спасибо! Ваша заявка успешно отправлена.\nМы свяжемся с вами в течение 30 минут.');
+            this.reset();
+        } else {
+            alert('❌ Ошибка отправки. Пожалуйста, попробуйте позже или позвоните нам по телефону +7 (913) 777-12-13');
+        }
+    })
+    .catch(error => {
+        alert('❌ Произошла ошибка. Проверьте подключение к интернету.');
+        console.error('Error:', error);
+    })
+    .finally(() => {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalHTML;
+    });
+});
+</script>
 </body>
 </html>
-

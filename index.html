@@ -6,41 +6,7 @@
     <title>Мастер Дом — Монтаж промышленной сантехники</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <script>
-      document.getElementById('contactForm').addEventListener('submit', function(e) {
-               e.preventDefault();
-               
-               const formData = new FormData(this);
-               const submitBtn = this.querySelector('.form-submit');
-               const originalHTML = submitBtn.innerHTML;
-               
-               // Блокируем кнопку
-               submitBtn.disabled = true;
-               submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Отправка...';
-               
-               fetch('send.php', {
-                   method: 'POST',
-                   body: formData
-               })
-               .then(response => response.json())
-               .then(data => {
-                   if (data.success) {
-                       alert('✅ Спасибо! Ваша заявка успешно отправлена.\nМы свяжемся с вами в ближайшее время.');
-                       this.reset();
-                   } else {
-                       alert('❌ Ошибка отправки. Пожалуйста, попробуйте позже или позвоните нам.');
-                   }
-               })
-               .catch(error => {
-                   alert('❌ Произошла ошибка. Проверьте подключение к интернету.');
-                   console.error('Error:', error);
-               })
-               .finally(() => {
-                   submitBtn.disabled = false;
-                   submitBtn.innerHTML = originalHTML;
-               });
-           });
-    </script>
+    
     <style>
         :root {
             --primary: #0a5eb8;
@@ -3217,6 +3183,41 @@
         });
     });
 </script>
-
+<script>
+      document.getElementById('contactForm').addEventListener('submit', function(e) {
+               e.preventDefault();
+               
+               const formData = new FormData(this);
+               const submitBtn = this.querySelector('.form-submit');
+               const originalHTML = submitBtn.innerHTML;
+               
+               // Блокируем кнопку
+               submitBtn.disabled = true;
+               submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Отправка...';
+               
+               fetch('send.php', {
+                   method: 'POST',
+                   body: formData
+               })
+               .then(response => response.json())
+               .then(data => {
+                   if (data.success) {
+                       alert('✅ Спасибо! Ваша заявка успешно отправлена.\nМы свяжемся с вами в ближайшее время.');
+                       this.reset();
+                   } else {
+                       alert('❌ Ошибка отправки. Пожалуйста, попробуйте позже или позвоните нам.');
+                   }
+               })
+               .catch(error => {
+                   alert('❌ Произошла ошибка. Проверьте подключение к интернету.');
+                   console.error('Error:', error);
+               })
+               .finally(() => {
+                   submitBtn.disabled = false;
+                   submitBtn.innerHTML = originalHTML;
+               });
+           });
+    </script>
 </body>
 </html>
+

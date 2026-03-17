@@ -63,7 +63,457 @@
             max-width: 100vw;
 
         }
+                    /* ==================== МОДАЛЬНАЯ ГАЛЕРЕЯ ==================== */
 
+            .gallery-modal {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(15, 23, 42, 0.98);
+                z-index: 10000;
+                align-items: center;
+                justify-content: center;
+                padding: 0;
+                backdrop-filter: blur(10px);
+                
+            }
+
+            .gallery-modal.active {
+                display: flex;
+                animation: fadeIn 0.3s ease;
+            }
+
+            @keyframes fadeIn {
+                from { opacity: 0; }
+                to { opacity: 1; }
+            }
+
+            .gallery-content {
+                max-width: 100%;
+                width: 100%;
+                height: 100vh;
+                display: flex;
+                flex-direction: column;
+                position: relative;
+            }
+
+            .gallery-header {
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                z-index: 10;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 25px 40px;
+                background: linear-gradient(to bottom, rgba(15,23,42,0.95), transparent);
+                color: var(--white);
+            }
+
+            .gallery-header h2 {
+                 font-size: 28px;
+                 background: var(--gradient-primary);
+                 -webkit-background-clip: text;
+                 -webkit-text-fill-color: transparent;
+                 background-clip: text;
+                 font-weight: 700;
+                 margin-bottom: 8px;
+            }
+            .gallery-description {
+                 font-size: 20px;
+                color: var(--white);
+                font-weight: 400;
+                line-height: 1.5;
+                max-width: 600px;
+            }
+            .gallery-header-text {
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+            }
+            .slide-counter {
+                display: none;
+                background: rgba(255,255,255,0.1);
+                padding: 12px 24px;
+                border-radius: var(--radius-full);
+                font-size: 14px;
+                color: var(--white);
+                border: 1px solid rgba(255,255,255,0.1);
+                backdrop-filter: blur(10px);
+            }
+
+            .slide-counter .current {
+                display: none;
+                color: var(--primary-light);
+                font-weight: 700;
+                font-size: 20px;
+            }
+
+            .gallery-close {
+                position: absolute;
+                top: 25px;
+                right: 40px;
+                background: rgba(255,255,255,0.1);
+                border: 2px solid rgba(255,255,255,0.2);
+                color: var(--white);
+                width: 56px;
+                height: 56px;
+                border-radius: var(--radius-full);
+                cursor: pointer;
+                font-size: 24px;
+                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                z-index: 100;
+                backdrop-filter: blur(10px);
+            }
+
+            .gallery-close:hover {
+                background: var(--accent);
+                border-color: var(--accent);
+                transform: rotate(90deg) scale(1.1);
+                box-shadow: 0 0 30px rgba(245,158,11,0.5);
+            }
+
+            .gallery-carousel {
+                flex: 1;
+                position: relative;
+                width: 100%;
+                height: 100%;
+                background: var(--gray-900);
+            }
+
+            .gallery-slides {
+                position: relative;
+                width: 100%;
+                height: calc(100vh - 140px);
+                
+            }
+
+            .gallery-slide {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                opacity: 0;
+                transition: opacity 0.6s ease-in-out;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                
+            }
+
+            .gallery-slide.active {
+                opacity: 1;
+            }
+
+            .gallery-slide img {
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+                background: var(--gray-900);
+            }
+
+            .gallery-nav {
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                background: rgba(255,255,255,0.1);
+                backdrop-filter: blur(20px);
+                border: 2px solid rgba(255,255,255,0.2);
+                color: var(--white);
+                width: 64px;
+                height: 64px;
+                border-radius: var(--radius-full);
+                cursor: pointer;
+                font-size: 22px;
+                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                z-index: 100;
+            }
+
+            .gallery-nav:hover {
+                background: var(--primary);
+                border-color: var(--primary);
+                transform: translateY(-50%) scale(1.1);
+                box-shadow: var(--shadow-glow);
+            }
+
+            .gallery-nav.prev {
+                left: 40px;
+            }
+
+            .gallery-nav.next {
+                right: 40px;
+            }
+
+            .gallery-thumbnails {
+                position: absolute;
+                bottom: 30px;
+                left: 50%;
+                transform: translateX(-50%);
+                display: flex;
+                gap: 15px;
+                background: rgba(15,23,42,0.85);
+                padding: 15px 25px;
+                border-radius: var(--radius-xl);
+                backdrop-filter: blur(20px);
+                border: 1px solid rgba(255,255,255,0.1);
+                max-width: 90%;
+                overflow-x: auto;
+                z-index: 10;
+            }
+
+            .gallery-thumbnails::-webkit-scrollbar {
+                height: 6px;
+            }
+
+            .gallery-thumbnails::-webkit-scrollbar-track {
+                background: rgba(255,255,255,0.1);
+                border-radius: 3px;
+            }
+
+            .gallery-thumbnails::-webkit-scrollbar-thumb {
+                background: var(--primary);
+                border-radius: 3px;
+            }
+
+            .gallery-thumb {
+                flex-shrink: 0;
+                width: 120px;
+                height: 80px;
+                border-radius: var(--radius-md);
+                overflow: hidden;
+                cursor: pointer;
+                border: 3px solid transparent;
+                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                opacity: 0.6;
+            }
+
+            .gallery-thumb:hover {
+                transform: translateY(-5px);
+                border-color: var(--primary-light);
+                opacity: 1;
+            }
+
+            .gallery-thumb.active {
+                border-color: var(--primary);
+                box-shadow: var(--shadow-glow);
+                opacity: 1;
+            }
+
+            .gallery-thumb img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                transition: transform 0.3s;
+            }
+
+            .gallery-thumb:hover img {
+                transform: scale(1.1);
+            }
+
+            /* ==================== КАРТОЧКА ПРОЕКТА ==================== */
+
+            .work-card {
+                cursor: pointer;
+                
+            }
+
+            .work-card-image {
+                position: relative;
+                overflow: hidden;
+            }
+
+            .work-card-image img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                transition: transform 0.5s ease;
+            }
+
+            .work-card:hover .work-card-image img {
+                transform: scale(1.1);
+            }
+
+            .work-card-zoom {
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: rgba(10, 94, 184, 0.85);
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 12px;
+                opacity: 0;
+                transition: opacity 0.3s ease;
+                color: var(--white);
+            }
+
+            .work-card-zoom i {
+                font-size: 52px;
+                text-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            }
+
+            .work-card-zoom span {
+                font-size: 15px;
+                font-weight: 600;
+                text-transform: uppercase;
+                letter-spacing: 2px;
+            }
+
+            .work-card:hover .work-card-zoom {
+                opacity: 1;
+            }
+
+            /* ==================== АДАПТИВ ==================== */
+
+            @media (max-width: 1024px) {
+                .gallery-nav {
+                    width: 54px;
+                    height: 54px;
+                    font-size: 18px;
+                }
+                
+                .gallery-nav.prev {
+                    left: 20px;
+                }
+                
+                .gallery-nav.next {
+                    right: 20px;
+                }
+                
+                .gallery-header {
+                    padding: 20px 30px;
+                }
+                
+                .gallery-header h2 {
+                    font-size: 24px;
+                }
+            }
+
+            @media (max-width: 768px) {
+                .gallery-slides {
+                    height: calc(100vh - 180px);
+                }
+                
+                .gallery-header {
+                    padding: 15px 20px;
+                    flex-direction: column;
+                    gap: 10px;
+                    align-items: flex-start;
+                }
+                
+                .gallery-header h2 {
+                     font-size: 20px;
+                 }
+    
+                .gallery-description {
+                     font-size: 12px;
+                    max-width: 100%;
+                 }
+    
+                 .gallery-header-text {
+                      gap: 5px;
+                }
+                
+                .slide-counter {
+                    display: none;
+                    padding: 8px 16px;
+                    font-size: 12px;
+                }
+                
+                .slide-counter .current {
+                    display: none;
+                    font-size: 16px;
+                }
+                
+                .gallery-nav {
+                    width: 46px;
+                    height: 46px;
+                    font-size: 16px;
+                }
+                
+                .gallery-nav.prev {
+                    left: 10px;
+                }
+                
+                .gallery-nav.next {
+                    right: 10px;
+                }
+                
+                .gallery-close {
+                    top: 15px;
+                    right: 15px;
+                    width: 46px;
+                    height: 46px;
+                    font-size: 20px;
+                }
+                
+                .gallery-thumbnails {
+                    bottom: 15px;
+                    padding: 10px 15px;
+                    gap: 10px;
+                }
+                
+                .gallery-thumb {
+                    width: 80px;
+                    height: 55px;
+                }
+                
+                .work-card-zoom i {
+                    font-size: 40px;
+                }
+                
+                .work-card-zoom span {
+                    font-size: 13px;
+                }
+            }
+
+            @media (max-width: 480px) {
+                .gallery-slides {
+                    height: calc(120vh - 200px);
+                }
+                
+                .gallery-header h2 {
+                    font-size: 20px;
+                }
+    
+                .gallery-description {
+                    font-size: 15px;
+                    display: -display-box;
+                    -webkit-line-clamp: 2;
+                    -webkit-box-orient: vertical;
+                    overflow: hidden;
+                }
+                
+                .gallery-nav {
+                    width: 40px;
+                    height: 40px;
+                    font-size: 14px;
+                }
+                
+                .gallery-thumb {
+                    width: 60px;
+                    height: 45px;
+                }
+                
+                .gallery-thumbnails {
+                    padding: 8px 12px;
+                    gap: 8px;
+                }
+            }
         /* ===== SCROLLBAR ===== */
         ::-webkit-scrollbar {
             width: 8px;
@@ -1037,7 +1487,7 @@
         .works-grid {
             display: grid;
             grid-template-columns: none;
-            gap: 24px;
+            gap: 24px;  
         }
 
         .work-card {
@@ -2429,96 +2879,94 @@
         </div>
 
         <div class="works-grid">
-             <div class="work-card reveal reveal-delay-1">
+             <div class="work-card reveal" onclick="openGallery('klev')">
                 <div class="work-card-image">
-                        <a data-flickr-embed="true" href="https://www.flickr.com/photos/204340973@N07/55141580853/in/photostream/" title="klev-1">
-                            <img src="https://live.staticflickr.com/65535/55141580853_750db1b962_c.jpg" width="auto" height="auto" alt="klev-1"/>
-                     </a>
-                        <script async src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"></script>
+                     <img src="images/klev/klev-1.jpg" alt="klev-1"/>
+                     <div class="work-card-zoom">
+                         <i class="fas fa-images"></i>
+                         <span>Смотреть галерею</span>
+                     </div>
                 </div>
                 <div class="work-card-overlay">
                     <div class="work-card-tag">SPA</div>
                     <div class="work-card-title">Клевер Резорт&Спа</div>
                     <div class="work-card-desc">Модернизация восьми газовых котельных - реновация систем отопления и водоснабжения -  замена систем водоподготовки - монтаж систем вентиляции</div>
                 </div>
-                <div class="work-card-arrow">
-                    <i class="fas fa-arrow-up-right"></i>
-                </div>
             </div>
 
-            <div class="work-card reveal reveal-delay-2">
+
+        
+            <div class="work-card reveal reveal-delay-2" onclick="openGallery('ugmk')">
                 <div class="work-card-image">
-                        <a data-flickr-embed="true" href="https://www.flickr.com/photos/204340973@N07/55140515232/in/dateposted-public/" title="ugmk-1">
-                            <img src="https://live.staticflickr.com/65535/55140515232_04b79acaa4_c.jpg" width="auto" height="auto" alt="ugmk-1"/>
-                        </a>
-                        <script async src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"></script>
-                        
+                        <img src="images/ugmk/ugmk-1.jpg" alt="ugmk-1"/>
+                     <div class="work-card-zoom">
+                         <i class="fas fa-images"></i>
+                         <span>Смотреть галерею</span>
+                    </div>    
                 </div>
                 <div class="work-card-overlay">
                     <div class="work-card-tag">Металлургия</div>
                     <div class="work-card-title">УГМК - Уральская горно-металлургическая компания</div>
                     <div class="work-card-desc">Реновация системы водоснабжения: бурение дополнительной скважины, монтаж кессона, замена глубинных насосов, обвязка водяных емкостей, монтаж автоматики с удаленным доступом. </div>
                 </div>
-                <div class="work-card-arrow">
-                    <i class="fas fa-arrow-up-right"></i>
-                </div>
             </div>
 
-            <div class="work-card reveal reveal-delay-3">
-                <div class="work-card-image">
-                        <a data-flickr-embed="true" href="https://www.flickr.com/photos/204340973@N07/55141405036/in/dateposted-public/" title="tal-1">
-                              <img src="https://live.staticflickr.com/65535/55141405036_bcb3650f20_c.jpg" width="auto" height="auto" alt="tal-1"/>
-                         </a>
-                         <script async src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"></script>
-                        
-                </div>
-                <div class="work-card-overlay">
-                    <div class="work-card-tag">Горнодобывающая пром.</div>
-                    <div class="work-card-title">Талданский щебеночный завод – филиал АО «ПНК»</div>
-                    <div class="work-card-desc">Монтаж трех электрических котельных суммарной мощностью 690кВт, монтаж системы отопления в гараже вспомогательной техники площадью 1500м2, монтаж системы отопления в АБК площадью 800м2, реновация системы отопления в РМЦ площадью 2200м2, монтаж системы подготовки котловой воды,автоматизация котельных с удаленным управлением.</div>
-                </div>
-                <div class="work-card-arrow">
-                    <i class="fas fa-arrow-up-right"></i>
-                </div>
-            </div>
 
-            <div class="work-card reveal reveal-delay-4">
+
+
+            <div class="work-card reveal reveal-delay-3" onclick="openGallery('ang')">
                 <div class="work-card-image">
-                    
-                         <a data-flickr-embed="true" href="https://www.flickr.com/photos/204340973@N07/55141580873/in/dateposted-public/" title="tal-1">
-                              <img src="https://live.staticflickr.com/65535/55141580873_644fe2fa63_c.jpg" width="auto" height="auto" alt="tal-1"/>
-                         </a>
-                         <script async src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"></script>
-                    
+                     <img src="images/ang/ang-1.jpg" alt="ang-1"/>
+                     <div class="work-card-zoom">
+                         <i class="fas fa-images"></i>
+                         <span>Смотреть галерею</span>
+                     </div>
                 </div>
                 <div class="work-card-overlay">
                     <div class="work-card-tag">НПК</div>
                     <div class="work-card-title">Ангиолайн Ресерч</div>
                     <div class="work-card-desc">Монтаж КНС в действующем помещении площадью 4000м2, монтаж теплового узла, возведение санитарно технического блока , монтаж системы водоснабжения</div>
                 </div>
-                <div class="work-card-arrow">
-                    <i class="fas fa-arrow-up-right"></i>
-                </div>
             </div>
 
-            <div class="work-card reveal reveal-delay-5">
+
+
+
+
+            <div class="work-card reveal reveal-delay-4" onclick="openGallery('sfm')">
                 <div class="work-card-image">
-                    
-                        <a data-flickr-embed="true" href="https://www.flickr.com/photos/204340973@N07/55142007772/in/dateposted-public/" title="sfm-1">
-                            <img src="https://live.staticflickr.com/65535/55142007772_19592b510e_c.jpg" width="auto" height="auto" alt="sfm-1"/>
-                        </a>
-                           <script async src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"></script>
-                    
-                </div>
+                     <img src="images/sfm/sfm-1.jpg" alt="sfm-1"/>
+                     <div class="work-card-zoom">
+                         <i class="fas fa-images"></i>
+                         <span>Смотреть галерею</span>
+                     </div>
+                </div>     
                 <div class="work-card-overlay">
                     <div class="work-card-tag">НИИ</div>
                     <div class="work-card-title">SFM-фарм</div>
                     <div class="work-card-desc">Монтаж предизолироанной трассы теплоснабжения, модернизация котельной на 1000кВт.</div>
                 </div>
-                <div class="work-card-arrow">
-                    <i class="fas fa-arrow-up-right"></i>
-                </div>
             </div>
+
+
+
+            <div class="work-card reveal reveal-delay-5" onclick="openGallery('taldan')">
+                <div class="work-card-image">
+                    <img src="images/tal/tal-1.jpg" alt="tal-1">
+                    <div class="work-card-zoom">
+                        <i class="fas fa-images"></i>
+                        <span>Смотреть галерею</span>
+                    </div>
+                </div>
+                <div class="work-card-overlay">
+                    <div class="work-card-tag">Горнодобывающая пром.</div>
+                    <div class="work-card-title">Талданский щебеночный завод</div>  
+                    <div class="work-card-desc">Монтаж трех электрических котельных суммарной мощностью 690кВт, монтаж системы отопления в гараже вспомогательной техники площадью 1500м2, монтаж системы отопления в АБК площадью 800м2, реновация системы отопления в РМЦ площадью 2200м2, монтаж системы подготовки котловой воды,автоматизация котельных с удаленным управлением</div>  
+                
+                </div>
+                
+            </div>            
+                     
         </div>
     </div>
 </section>
@@ -3216,6 +3664,183 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
         submitBtn.disabled = false;
         submitBtn.innerHTML = originalHTML;
     });
+});
+</script>
+<!-- Модальная галерея -->
+<div id="galleryModal" class="gallery-modal">
+    <button class="gallery-close" onclick="closeGallery()">
+        <i class="fas fa-times"></i>
+    </button>
+    
+        <div class="gallery-content">
+            <div class="gallery-header">
+                <div class="gallery-header-text">
+                <h2 id="galleryTitle">Галерея проекта</h2>
+                <p class="gallery-description" id="galleryDescription">Описание проекта</p>
+                </div>
+                <div class="slide-counter">
+                <span class="current">1</span> / <span class="total">6</span>
+            </div>
+        </div>
+        
+        <div class="gallery-carousel">
+            <div class="gallery-slides" id="gallerySlides">
+                <!-- Слайды загрузятся через JS -->
+            </div>
+            
+            <button class="gallery-nav prev" onclick="moveGallerySlide(-1)">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="gallery-nav next" onclick="moveGallerySlide(1)">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+        
+        <div class="gallery-thumbnails" id="galleryThumbnails">
+            <!-- Миниатюры загрузятся через JS -->
+        </div>
+    </div>
+</div>
+<script>
+// Данные проектов с фотографиями
+const projectGalleries = {
+    'klev': {
+        title: 'Клевер Рисорт&СПА',
+        description: 'Модернизация восьми газовых котельных - реновация систем отопления и водоснабжения - замена систем водоподготовки - монтаж систем вентиляции',
+        images: [
+            'images/klev/klev-1.jpg',
+            'images/klev/klev-2.jpg',
+            'images/klev/klev-3.jpg',
+            'images/klev/klev-4.jpg',
+            'images/klev/klev-5.jpg',
+            'images/klev/klev-6.jpg'
+        ]
+    },
+        'ugmk': {
+        title: 'УГМК',
+        description: 'Реновация системы водоснабжения: бурение дополнительной скважины, монтаж кессона, замена глубинных насосов, обвязка водяных емкостей, монтаж автоматики с удаленным доступом.',
+        images: [
+            'images/ugmk/ugmk-1.jpg',
+            'images/ugmk/ugmk-2.jpg',
+            'images/ugmk/ugmk-3.jpg',
+        ]
+    
+    },
+    'ang': {
+        title: 'Ангиолайн Ресерч',
+        description: 'Монтаж КНС в действующем помещении площадью 4000м2, монтаж теплового узла, возведение санитарно технического блока , монтаж системы водоснабжения',
+        images: [
+            'images/ang/ang-1.jpg',
+        ]
+    },
+    'sfm': {
+        title: 'SFM-фарм',
+        description: 'Монтаж предизолироанной трассы теплоснабжения, модернизация котельной на 1000кВт.',
+        images: [
+            'images/sfm/sfm-1.jpg',
+            'images/sfm/sfm-2.jpg',
+            'images/sfm/sfm-3.jpg',
+        ]
+    },
+    'taldan': {
+        title: 'Талданский щебеночный завод',
+        description: 'Монтаж трех электрических котельных суммарной мощностью 690кВт, монтаж системы отопления в гараже вспомогательной техники площадью 1500м2, монтаж системы отопления в АБК площадью 800м2, реновация системы отопления в РМЦ площадью 2200м2, монтаж системы подготовки котловой воды,автоматизация котельных с удаленным управлением.',
+        images: [
+            'images/tal/tal-1.jpg',
+            'images/tal/tal-2.jpg',
+            'images/tal/tal-3.jpg',
+            'images/tal/tal-4.jpg',
+            'images/tal/tal-5.jpg',
+            'images/tal/tal-6.jpg',
+            'images/tal/tal-7.jpg'
+        ]
+    },
+
+    
+};
+
+let currentGallerySlide = 0;
+let currentGalleryImages = [];
+
+function openGallery(projectId) {
+    const project = projectGalleries[projectId];
+    if (!project) return;
+    
+    currentGalleryImages = project.images;
+    currentGallerySlide = 0;
+    
+    // Устанавливаем заголовок и описание
+    document.getElementById('galleryTitle').textContent = project.title;
+    document.getElementById('galleryDescription').textContent = project.description;
+    
+    // Создаем слайды
+    const slidesContainer = document.getElementById('gallerySlides');
+    slidesContainer.innerHTML = project.images.map((img, index) => `
+        <div class="gallery-slide ${index === 0 ? 'active' : ''}">
+            <img src="${img}" alt="Фото ${index + 1}">
+        </div>
+    `).join('');
+    
+    // Создаем миниатюры
+    const thumbsContainer = document.getElementById('galleryThumbnails');
+    thumbsContainer.innerHTML = project.images.map((img, index) => `
+        <div class="gallery-thumb ${index === 0 ? 'active' : ''}" onclick="goToGallerySlide(${index})">
+            <img src="${img}" alt="Миниатюра ${index + 1}">
+        </div>
+    `).join('');
+    
+    // Обновляем счетчик
+    updateGalleryCounter();
+    
+    // Показываем модалку
+    document.getElementById('galleryModal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeGallery() {
+    document.getElementById('galleryModal').classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+function moveGallerySlide(direction) {
+    currentGallerySlide = (currentGallerySlide + direction + currentGalleryImages.length) % currentGalleryImages.length;
+    updateGallerySlide();
+}
+
+function goToGallerySlide(index) {
+    currentGallerySlide = index;
+    updateGallerySlide();
+}
+
+function updateGallerySlide() {
+    // Обновляем слайды
+    document.querySelectorAll('.gallery-slide').forEach((slide, index) => {
+        slide.classList.toggle('active', index === currentGallerySlide);
+    });
+    
+    // Обновляем миниатюры
+    document.querySelectorAll('.gallery-thumb').forEach((thumb, index) => {
+        thumb.classList.toggle('active', index === currentGallerySlide);
+    });
+    
+    updateGalleryCounter();
+}
+
+function updateGalleryCounter() {
+    document.querySelector('.slide-counter .current').textContent = currentGallerySlide + 1;
+    document.querySelector('.slide-counter .total').textContent = currentGalleryImages.length;
+}
+
+// Закрытие по Escape
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeGallery();
+    if (e.key === 'ArrowLeft') moveGallerySlide(-1);
+    if (e.key === 'ArrowRight') moveGallerySlide(1);
+});
+
+// Закрытие по клику вне контента
+document.getElementById('galleryModal')?.addEventListener('click', (e) => {
+    if (e.target.id === 'galleryModal') closeGallery();
 });
 </script>
 </body>

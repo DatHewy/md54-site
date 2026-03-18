@@ -8,10 +8,16 @@
     <meta name="robots" content="index, follow">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link rel="icon" type="image/png" href="images/favicon-96x96.png" sizes="96x96" />
-    <link rel="icon" type="image/svg+xml" href="images/favicon.svg" />
-    <link rel="shortcut icon" href="/favicon.ico" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <!-- Основной фавикон для Google и Яндекса -->
+    <link rel="icon" type="image/svg+xml" href="/images/favicon.svg" />
+    <link rel="icon" type="image/png" href="/images/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192" />
+
+    <!-- Для совместимости -->
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+
+    <!-- Apple и PWA -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
     
     <style>
@@ -228,6 +234,7 @@
             }
 
             .gallery-nav {
+
                 position: absolute;
                 top: 50%;
                 transform: translateY(-50%);
@@ -255,10 +262,12 @@
             }
 
             .gallery-nav.prev {
+
                 left: 40px;
             }
 
             .gallery-nav.next {
+
                 right: 40px;
             }
 
@@ -3860,6 +3869,32 @@ document.addEventListener('keydown', (e) => {
 // Закрытие по клику вне контента
 document.getElementById('galleryModal')?.addEventListener('click', (e) => {
     if (e.target.id === 'galleryModal') closeGallery();
+});
+const gallerySwiper = new Swiper('.gallery-slides', {   // или твой селектор
+    slidesPerView: 1,
+    spaceBetween: 0,
+    loop: true,                    // или false — как тебе нужно
+    speed: 400,
+    
+    // ← Убираем кнопки полностью
+    navigation: false,
+    
+    // Включаем жесты (по умолчанию включено, но явно прописываем)
+    touchRatio: 1,
+    touchAngle: 45,
+    grabCursor: true,
+    
+    // Опционально: pagination (точки снизу)
+    pagination: {
+        el: '.gallery-pagination',   // создай блок с этим классом, если хочешь точки
+        clickable: true,
+    },
+    
+    breakpoints: {
+        480: {
+            // здесь можно чуть подкрутить поведение на больших экранах
+        }
+    }
 });
 </script>
 </body>

@@ -3693,273 +3693,277 @@
 </script>
 
 <!-- Модальная галерея -->
-<div id="galleryModal" class="gallery-modal">
-    <button class="gallery-close" onclick="closeGallery()">
-        <i class="fas fa-times"></i>
-    </button>
-    
-        <div class="gallery-content">
-            <div class="gallery-header">
-                <div class="gallery-header-text">
-                <h2 id="galleryTitle">Галерея проекта</h2>
-                <ul class="gallery-description" id="galleryDescription"></ul>
-                </div>
-                <div class="slide-counter">
-                <span class="current">1</span> / <span class="total">6</span>
-            </div>
-        </div>
+    <div id="galleryModal" class="gallery-modal">
+        <button class="gallery-close" onclick="closeGallery()">
+            <i class="fas fa-times"></i>
+        </button>
         
-        <div class="gallery-carousel">
-            <div class="gallery-slides" id="gallerySlides">
-                <!-- Слайды загрузятся через JS -->
+            <div class="gallery-content">
+                <div class="gallery-header">
+                    <div class="gallery-header-text">
+                    <h2 id="galleryTitle">Галерея проекта</h2>
+                    <ul class="gallery-description" id="galleryDescription"></ul>
+                    </div>
+                    <div class="slide-counter">
+                    <span class="current">1</span> / <span class="total">6</span>
+                </div>
             </div>
             
-            <button class="gallery-nav prev" onclick="moveGallerySlide(-1)">
-                <i class="fas fa-chevron-left"></i>
-            </button>
-            <button class="gallery-nav next" onclick="moveGallerySlide(1)">
-                <i class="fas fa-chevron-right"></i>
-            </button>
-        </div>
-        
-        <div class="gallery-thumbnails" id="galleryThumbnails">
-            <!-- Миниатюры загрузятся через JS -->
+            <div class="gallery-carousel">
+                <div class="gallery-slides" id="gallerySlides">
+                    <!-- Слайды загрузятся через JS -->
+                </div>
+                
+                <button class="gallery-nav prev" onclick="moveGallerySlide(-1)">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="gallery-nav next" onclick="moveGallerySlide(1)">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+            
+            <div class="gallery-thumbnails" id="galleryThumbnails">
+                <!-- Миниатюры загрузятся через JS -->
+            </div>
         </div>
     </div>
-</div>
-<script>
-// Данные проектов с фотографиями
-const projectGalleries = {
-    'klev': {
-        title: 'Клевер Рисорт&СПА',
-        description: ['Модернизация восьми газовых котельных',
-                        'Реновация систем отопления и водоснабжения', 
-                        'Замена систем водоподготовки ',
-                        'Монтаж систем вентиляции'],
-        images: [
-            'images/klev/klev-1.jpg',
-            'images/klev/klev-2.jpg',
-            'images/klev/klev-3.jpg',
-            'images/klev/klev-4.jpg',
-            'images/klev/klev-5.jpg',
-            'images/klev/klev-6.jpg'
-        ]
-    },
-        'ugmk': {
-        title: 'УГМК',
-        description: ['Реновация системы водоснабжения:',
-                    'Бурение дополнительной скважины', 
-                    'Монтаж кессона', 
-                    'Замена глубинных насосов', 
-                    'Обвязка водяных емкостей', 
-                    'Монтаж автоматики с удаленным доступом'],
-        images: [
-            'images/ugmk/ugmk-1.jpg',
-            'images/ugmk/ugmk-2.jpg',
-            'images/ugmk/ugmk-3.jpg',
-        ]
-    
-    },
-    'ang': {
-        title: 'Ангиолайн Ресерч',
-        description: ['Монтаж КНС в действующем помещении площадью 4000м2', 
-                    'Монтаж теплового узла', 
-                    'Возведение санитарно технического блока', 
-                    'Монтаж системы водоснабжения'],
-        images: [
-            'images/ang/ang-1.jpg',
-        ]
-    },
-    'sfm': {
-        title: 'SFM-фарм',
-        description: ['Монтаж предизолироанной трассы теплоснабжения',
-                     'Модернизация котельной на 1000кВт'],
-        images: [
-            'images/sfm/sfm-1.jpg',
-            'images/sfm/sfm-2.jpg',
-            'images/sfm/sfm-3.jpg',
-        ]
-    },
-    'taldan': {
-        title: 'Талданский щебеночный завод',
-        description: ['Монтаж трех электрических котельных суммарной мощностью 690кВт',
-            'Монтаж системы отопления в гараже вспомогательной техники площадью 1500м²',
-            'Монтаж системы отопления в АБК площадью 800м²',
-            'Реновация системы отопления в РМЦ площадью 2200м²',
-            'Монтаж системы подготовки котловой воды',
-            'Автоматизация котельных с удаленным управлением'
-            ],
-        images: [
-            'images/tal/tal-1.jpg',
-            'images/tal/tal-2.jpg',
-            'images/tal/tal-3.jpg',
-            'images/tal/tal-4.jpg',
-            'images/tal/tal-5.jpg',
-            'images/tal/tal-6.jpg',
-            'images/tal/tal-7.jpg'
-        ]
-    },
+    <script>
+    // Данные проектов с фотографиями
+    const projectGalleries = {
+        'klev': {
+            title: 'Клевер Рисорт&СПА',
+            description: ['Модернизация восьми газовых котельных',
+                            'Реновация систем отопления и водоснабжения', 
+                            'Замена систем водоподготовки ',
+                            'Монтаж систем вентиляции'],
+            images: [
+                'images/klev/klev-1.jpg',
+                'images/klev/klev-2.jpg',
+                'images/klev/klev-3.jpg',
+                'images/klev/klev-4.jpg',
+                'images/klev/klev-5.jpg',
+                'images/klev/klev-6.jpg'
+            ]
+        },
+            'ugmk': {
+            title: 'УГМК',
+            description: ['Реновация системы водоснабжения:',
+                        'Бурение дополнительной скважины', 
+                        'Монтаж кессона', 
+                        'Замена глубинных насосов', 
+                        'Обвязка водяных емкостей', 
+                        'Монтаж автоматики с удаленным доступом'],
+            images: [
+                'images/ugmk/ugmk-1.jpg',
+                'images/ugmk/ugmk-2.jpg',
+                'images/ugmk/ugmk-3.jpg',
+            ]
+        
+        },
+        'ang': {
+            title: 'Ангиолайн Ресерч',
+            description: ['Монтаж КНС в действующем помещении площадью 4000м2', 
+                        'Монтаж теплового узла', 
+                        'Возведение санитарно технического блока', 
+                        'Монтаж системы водоснабжения'],
+            images: [
+                'images/ang/ang-1.jpg',
+            ]
+        },
+        'sfm': {
+            title: 'SFM-фарм',
+            description: ['Монтаж предизолироанной трассы теплоснабжения',
+                        'Модернизация котельной на 1000кВт'],
+            images: [
+                'images/sfm/sfm-1.jpg',
+                'images/sfm/sfm-2.jpg',
+                'images/sfm/sfm-3.jpg',
+            ]
+        },
+        'taldan': {
+            title: 'Талданский щебеночный завод',
+            description: ['Монтаж трех электрических котельных суммарной мощностью 690кВт',
+                'Монтаж системы отопления в гараже вспомогательной техники площадью 1500м²',
+                'Монтаж системы отопления в АБК площадью 800м²',
+                'Реновация системы отопления в РМЦ площадью 2200м²',
+                'Монтаж системы подготовки котловой воды',
+                'Автоматизация котельных с удаленным управлением'
+                ],
+            images: [
+                'images/tal/tal-1.jpg',
+                'images/tal/tal-2.jpg',
+                'images/tal/tal-3.jpg',
+                'images/tal/tal-4.jpg',
+                'images/tal/tal-5.jpg',
+                'images/tal/tal-6.jpg',
+                'images/tal/tal-7.jpg'
+            ]
+        },
 
-    
-};
+        
+    };
 
-let currentGallerySlide = 0;
-let currentGalleryImages = [];
+    let currentGallerySlide = 0;
+    let currentGalleryImages = [];
 
-function openGallery(projectId) {
-    const project = projectGalleries[projectId];
-    if (!project) return;
-    
-    currentGalleryImages = project.images;
-    currentGallerySlide = 0;
-    
-    // Устанавливаем заголовок и описание
-    document.getElementById('galleryTitle').textContent = project.title;
-    
-    
-    const descContainer = document.getElementById('galleryDescription');
-    descContainer.innerHTML = project.description.map(item => 
-        `<li>${item}</li>`
-    ).join('');
-    // Создаем слайды
-    const slidesContainer = document.getElementById('gallerySlides');
-    slidesContainer.innerHTML = project.images.map((img, index) => `
-        <div class="gallery-slide ${index === 0 ? 'active' : ''}">
-            <img src="${img}" alt="Фото ${index + 1}">
-        </div>
-    `).join('');
-    
-    // Создаем миниатюры
-    const thumbsContainer = document.getElementById('galleryThumbnails');
-    thumbsContainer.innerHTML = project.images.map((img, index) => `
-        <div class="gallery-thumb ${index === 0 ? 'active' : ''}" onclick="goToGallerySlide(${index})">
-            <img src="${img}" alt="Миниатюра ${index + 1}">
-        </div>
-    `).join('');
-    
-    // Обновляем счетчик
-    updateGalleryCounter();
-    
-    // Показываем модалку
-    document.getElementById('galleryModal').classList.add('active');
-    document.body.style.overflow = 'hidden';
-}
-
-function closeGallery() {
-    document.getElementById('galleryModal').classList.remove('active');
-    document.body.style.overflow = '';
-}
-
-function moveGallerySlide(direction) {
-    currentGallerySlide = (currentGallerySlide + direction + currentGalleryImages.length) % currentGalleryImages.length;
-    updateGallerySlide();
-}
-
-function goToGallerySlide(index) {
-    currentGallerySlide = index;
-    updateGallerySlide();
-}
-
-function updateGallerySlide() {
-    // Обновляем слайды
-    document.querySelectorAll('.gallery-slide').forEach((slide, index) => {
-        slide.classList.toggle('active', index === currentGallerySlide);
-    });
-    
-    // Обновляем миниатюры
-    document.querySelectorAll('.gallery-thumb').forEach((thumb, index) => {
-        thumb.classList.toggle('active', index === currentGallerySlide);
-    });
-    
-    updateGalleryCounter();
-}
-
-function updateGalleryCounter() {
-    document.querySelector('.slide-counter .current').textContent = currentGallerySlide + 1;
-    document.querySelector('.slide-counter .total').textContent = currentGalleryImages.length;
-}
-
-// Закрытие по Escape
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') closeGallery();
-    if (e.key === 'ArrowLeft') moveGallerySlide(-1);
-    if (e.key === 'ArrowRight') moveGallerySlide(1);
-});
-
-// Закрытие по клику вне контента
-document.getElementById('galleryModal')?.addEventListener('click', (e) => {
-    if (e.target.id === 'galleryModal') closeGallery();
-});
-const gallerySwiper = new Swiper('.gallery-slides', {   // или твой селектор
-    slidesPerView: 1,
-    spaceBetween: 0,
-    loop: true,                    // или false — как тебе нужно
-    speed: 400,
-    
-    // ← Убираем кнопки полностью
-    navigation: false,
-    
-    // Включаем жесты (по умолчанию включено, но явно прописываем)
-    touchRatio: 1,
-    touchAngle: 45,
-    grabCursor: true,
-    
-    // Опционально: pagination (точки снизу)
-    pagination: {
-        el: '.gallery-pagination',   // создай блок с этим классом, если хочешь точки
-        clickable: true,
-    },
-    
-    breakpoints: {
-        480: {
-            // здесь можно чуть подкрутить поведение на больших экранах
-        }
+    function openGallery(projectId) {
+        const project = projectGalleries[projectId];
+        if (!project) return;
+        
+        currentGalleryImages = project.images;
+        currentGallerySlide = 0;
+        
+        // Устанавливаем заголовок и описание
+        document.getElementById('galleryTitle').textContent = project.title;
+        
+        
+        const descContainer = document.getElementById('galleryDescription');
+        descContainer.innerHTML = project.description.map(item => 
+            `<li>${item}</li>`
+        ).join('');
+        // Создаем слайды
+        const slidesContainer = document.getElementById('gallerySlides');
+        slidesContainer.innerHTML = project.images.map((img, index) => `
+            <div class="gallery-slide ${index === 0 ? 'active' : ''}">
+                <img src="${img}" alt="Фото ${index + 1}">
+            </div>
+        `).join('');
+        
+        // Создаем миниатюры
+        const thumbsContainer = document.getElementById('galleryThumbnails');
+        thumbsContainer.innerHTML = project.images.map((img, index) => `
+            <div class="gallery-thumb ${index === 0 ? 'active' : ''}" onclick="goToGallerySlide(${index})">
+                <img src="${img}" alt="Миниатюра ${index + 1}">
+            </div>
+        `).join('');
+        
+        // Обновляем счетчик
+        updateGalleryCounter();
+        
+        // Показываем модалку
+        document.getElementById('galleryModal').classList.add('active');
+        document.body.style.overflow = 'hidden';
     }
-});
-<!-- ===== JSON-LD Микроразметка (КРИТИЧЕСКИ ВАЖНО для выдачи) ===== -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "name": "Мастер дом",
-    "description": "Монтаж промышленного отопления и инженерных систем под ключ",
-    "url": "https://masterdom-sibstroy.ru",
-    "telephone": "+7-913-777-12-13",
-    "email": "masterdomstroy54@mail.ru",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "ул. Красина, 74",
-      "addressLocality": "Новосибирск",
-      "addressRegion": "Новосибирская область",
-      "postalCode": "630015",
-      "addressCountry": "RU"
-    },
-    "geo": {
-      "@type": "GeoCoordinates",
-      "latitude": 55.0084,
-      "longitude": 82.9357
-    },
-    "image": "https://masterdom-sibstroy.ru/images/logo.jpg",
-    "priceRange": "$$",
-    "openingHours": "Mo-Fr 10:00-19:00",
-    "foundingDate": "2014",
-    "areaServed": [
-      {
-        { "@type": "City", "name": "Новосибирск" },
-        { "@type": "City", "name": "Бердск" },
-        { "@type": "City", "name": "Искитим" },
-        { "@type": "City", "name": "Барнаул" },
-        { "@type": "City", "name": "Омск" },
-        { "@type": "City", "name": "Томск" },
-        { "@type": "City", "name": "Красноярск" }
-      },
-      {
-        "@type": "Country",
-        "name": "Россия"
-      }
-    },
-  
-  </script>
-</script>
+
+    function closeGallery() {
+        document.getElementById('galleryModal').classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    function moveGallerySlide(direction) {
+        currentGallerySlide = (currentGallerySlide + direction + currentGalleryImages.length) % currentGalleryImages.length;
+        updateGallerySlide();
+    }
+
+    function goToGallerySlide(index) {
+        currentGallerySlide = index;
+        updateGallerySlide();
+    }
+
+    function updateGallerySlide() {
+        // Обновляем слайды
+        document.querySelectorAll('.gallery-slide').forEach((slide, index) => {
+            slide.classList.toggle('active', index === currentGallerySlide);
+        });
+        
+        // Обновляем миниатюры
+        document.querySelectorAll('.gallery-thumb').forEach((thumb, index) => {
+            thumb.classList.toggle('active', index === currentGallerySlide);
+        });
+        
+        updateGalleryCounter();
+    }
+
+    function updateGalleryCounter() {
+        document.querySelector('.slide-counter .current').textContent = currentGallerySlide + 1;
+        document.querySelector('.slide-counter .total').textContent = currentGalleryImages.length;
+    }
+
+    // Закрытие по Escape
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeGallery();
+        if (e.key === 'ArrowLeft') moveGallerySlide(-1);
+        if (e.key === 'ArrowRight') moveGallerySlide(1);
+    });
+
+    // Закрытие по клику вне контента
+    document.getElementById('galleryModal')?.addEventListener('click', (e) => {
+        if (e.target.id === 'galleryModal') closeGallery();
+    });
+    const gallerySwiper = new Swiper('.gallery-slides', {   // или твой селектор
+        slidesPerView: 1,
+        spaceBetween: 0,
+        loop: true,                    // или false — как тебе нужно
+        speed: 400,
+        
+        // ← Убираем кнопки полностью
+        navigation: false,
+        
+        // Включаем жесты (по умолчанию включено, но явно прописываем)
+        touchRatio: 1,
+        touchAngle: 45,
+        grabCursor: true,
+        
+        // Опционально: pagination (точки снизу)
+        pagination: {
+            el: '.gallery-pagination',   // создай блок с этим классом, если хочешь точки
+            clickable: true,
+        },
+        
+        breakpoints: {
+            480: {
+                // здесь можно чуть подкрутить поведение на больших экранах
+            }
+        }
+    });
+    </script>
+
+    <!-- ===== JSON-LD Микроразметка (КРИТИЧЕСКИ ВАЖНО для выдачи) ===== -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "Мастер дом",
+        "description": "Монтаж промышленного отопления и инженерных систем под ключ",
+        "url": "https://masterdom-sibstroy.ru",
+        "telephone": "+7-913-777-12-13",
+        "email": "masterdomstroy54@mail.ru",
+        
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "ул. Красина, 74",
+            "addressLocality": "Новосибирск",
+            "addressRegion": "Новосибирская область",
+            "postalCode": "630015",
+            "addressCountry": "RU"
+        },
+        
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 55.0084,
+            "longitude": 82.9357
+        },
+        
+        "image": "https://masterdom-sibstroy.ru/images/logo.jpg",
+        "priceRange": "$$",
+        "openingHours": "Mo-Fr 10:00-19:00",
+        "foundingDate": "2014",
+        
+        "areaServed": [
+            { "@type": "City", "name": "Новосибирск" },
+            { "@type": "City", "name": "Бердск" },
+            { "@type": "City", "name": "Искитим" },
+            { "@type": "City", "name": "Барнаул" },
+            { "@type": "City", "name": "Омск" },
+            { "@type": "City", "name": "Томск" },
+            { "@type": "City", "name": "Красноярск" }
+        ]
+        {
+            "@type": "Country",
+            "name": "Россия"
+        }
+        ]
+    }
+    </script>
 </body>
 </html>

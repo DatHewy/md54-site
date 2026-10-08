@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Монтаж промышленного отопления и сантехники под ключ в Новосибирске и по всей России | Мастер Дом</title>
+    <title>АИР — Академия инженерных решений</title>
     <!-- ===== DESCRIPTION ===== -->
     <meta name="description" content="Монтаж промышленного отопления и инженерных систем под ключ в Новосибирске. Котельные, водоснабжение, КНС. Опыт 10 лет, гарантия 2 года. Расчёт бесплатно!">
     
@@ -19,12 +19,12 @@
     <meta property="og:type" content="website">
     <meta property="og:title" content="Монтаж промышленного отопления под ключ — Новосибирск">
     <meta property="og:description" content="Проектирование и монтаж котельных, систем отопления, водоснабжения и КНС. Работаем по всей России. Бесплатный расчёт!">
-    <meta property="og:image" content="https://masterdom-sibstroy.ru/">
-    <meta property="og:url" content="https://masterdom-sibstroy.ru/">
+    <meta property="og:image" content="https://air-sibstroy.ru/">
+    <meta property="og:url" content="https://air-sibstroy.ru/">
     <meta property="og:locale" content="ru_RU">
-    <meta property="og:site_name" content="Мастер дом">
+    <meta property="og:site_name" content="АИР — Академия инженерных решений">
  
-    <link rel="canonical" href="https://masterdom-sibstroy.ru/">
+    <link rel="canonical" href="https://air-nsk.ru">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
    
@@ -1296,7 +1296,7 @@
         }
 
         .container {
-            max-width: 1320px;
+            max-width: 1520px;
             margin: 0 auto;
             padding: 0 24px;
         }
@@ -1771,6 +1771,108 @@
             line-height: 1.7;
         }
 
+                    /* Слайдшоу */
+            .slideshow-section {
+                margin-top: 40px;
+                margin-bottom: 50px;
+            }
+
+            .slideshow-container {
+                position: relative;
+                width: 100%;
+                height: 500px;
+                border-radius: 20px;
+                overflow: hidden;
+                box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+            }
+
+            .slides {
+                position: relative;
+                width: 100%;
+                height: 100%;
+            }
+
+            .slide {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                opacity: 0;
+                transition: opacity 0.6s ease;
+            }
+
+            .slide.active {
+                opacity: 1;
+            }
+
+            .slide img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+
+            /* Кнопки */
+            .slide-btn {
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 50px;
+                height: 50px;
+                border: none;
+                border-radius: 50%;
+                background: rgba(0, 0, 0, 0.5);
+                color: #fff;
+                font-size: 1.2rem;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                z-index: 10;
+            }
+
+            .slide-btn:hover {
+                background: var(--accent-orange, #ff6b35);
+            }
+
+            .slide-btn.prev { left: 20px; }
+            .slide-btn.next { right: 20px; }
+
+            /* Точки */
+            .slide-dots {
+                position: absolute;
+                bottom: 20px;
+                left: 50%;
+                transform: translateX(-50%);
+                display: flex;
+                gap: 10px;
+                z-index: 10;
+            }
+
+            .dot {
+                width: 12px;
+                height: 12px;
+                border-radius: 50%;
+                background: rgba(255, 255, 255, 0.5);
+                cursor: pointer;
+                transition: all 0.3s ease;
+            }
+
+            .dot.active {
+                background: var(--accent-orange, #ff6b35);
+            }
+
+            /* Адаптив */
+            @media (max-width: 768px) {
+                .slideshow-container { height: 350px; }
+                .slide-btn { width: 40px; height: 40px; }
+            }
+
+            @media (max-width: 576px) {
+                .slideshow-container { height: 250px; border-radius: 12px; }
+                .slide-btn { width: 35px; height: 35px; font-size: 1rem; }
+                .slide-btn.prev { left: 10px; }
+                .slide-btn.next { right: 10px; }
+                .dot { width: 10px; height: 10px; }
+}
         /* ===== REVIEWS / TESTIMONIALS ===== */
         .reviews-container {
             position: relative;
@@ -2690,8 +2792,8 @@
                 <img src="images/logo.png" alt="МД">
             </div>
             <div class="logo-text">
-                <span class="logo-name">Мастер Дом</span>
-                <span class="logo-tagline">Монтаж промышленного отопления</span>
+                <span class="logo-name">АИР</span>
+                <span class="logo-tagline">Академия инженерных решений</span>
             </div>
         </a>
 
@@ -2846,32 +2948,68 @@
             </p>
         </div>
 
-     <div class="video-wrapper reveal">
-        <div class="video-container" id="myVideo1">
-            <div class="video-poster" id="videoPoster">
-               <div class="video-poster-pattern"></div>
-               <div class="video-poster-overlay"></div>
-               <div class="play-button" id="playButton">
-                <i class="fas fa-play"></i>
-                
+        <!-- Видео -->
+        <div class="video-wrapper reveal">
+            <div class="video-container" id="myVideo1">
+                <div class="video-poster" id="videoPoster">
+                    <div class="video-poster-pattern"></div>
+                    <div class="video-poster-overlay"></div>
+                    <div class="play-button" id="playButton">
+                        <i class="fas fa-play"></i>
+                    </div>
+                </div>
+                <iframe 
+                    id="videoFrame"
+                    width="100%" 
+                    height="100%"
+                    src="https://kinescope.io/embed/ubnTHUnZFCu7gCriP8Yc3N"
+                    frameborder="0"
+                    allowfullscreen>
+                </iframe>
+            </div>
+        </div>
+
+        <!-- Слайдшоу -->
+        <div class="slideshow-section reveal">
+            <div class="slideshow-container">
+                <div class="slides">
+                    <div class="slide active">
+                        <img src="images/photo-1.jpg" alt="Фото 1">
+                    </div>
+                    <div class="slide">
+                        <img src="images/photo-2.jpg" alt="Фото 2">
+                    </div>
+                    <div class="slide">
+                        <img src="images/photo-3.jpg" alt="Фото 3">
+                    </div>
+                    <div class="slide">
+                        <img src="images/photo-4.jpg" alt="Фото 4">
+                    </div>
+                    <div class="slide">
+                        <img src="images/photo-5.jpg" alt="Фото 5">
+                    </div>
                 </div>
                 
+                <!-- Навигация -->
+                <button class="slide-btn prev" onclick="changeSlide(-1)">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="slide-btn next" onclick="changeSlide(1)">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+                
+                <!-- Точки -->
+                <div class="slide-dots">
+                    <span class="dot active" onclick="goToSlide(0)"></span>
+                    <span class="dot" onclick="goToSlide(1)"></span>
+                    <span class="dot" onclick="goToSlide(2)"></span>
+                    <span class="dot" onclick="goToSlide(3)"></span>
+                    <span class="dot" onclick="goToSlide(4)"></span>
+                </div>
             </div>
-            <iframe 
-                 id="myVideo1"
-                 width="100%" 
-                 height="100%"
-                 src="https://kinescope.io/embed/ubnTHUnZFCu7gCriP8Yc3N"
-                 frameborder="0"
-                 allowfullscreen>
-             </iframe>
-        
-             
-        
-
         </div>
-     </div>
 
+        <!-- Информационные карточки -->
         <div class="video-info reveal">
             <div class="video-info-card">
                 <div class="video-info-icon">
@@ -3142,7 +3280,7 @@
                         <i class="fas fa-star"></i>
                     </div>
                     <i class="fas fa-quote-left review-quote"></i>
-                    <p class="review-text">Компания Мастер Дом выполнила полный монтаж системы водоснабжения нашего завода. Работы были завершены на 2 недели раньше срока. Качество на высшем уровне!</p>
+                    <p class="review-text">Компания АИР выполнила полный монтаж системы водоснабжения нашего завода. Работы были завершены на 2 недели раньше срока. Качество на высшем уровне!</p>
                     <div class="review-divider"></div>
                     <div class="review-author">
                         <div class="review-avatar a1">АК</div>
@@ -3162,7 +3300,7 @@
                         <i class="fas fa-star"></i>
                     </div>
                     <i class="fas fa-quote-left review-quote"></i>
-                    <p class="review-text">Второй год подряд обращаемся в Мастер Дом для обслуживания инженерных сетей. Оперативная работа, отзывчивая команда. Рекомендуем как надёжного подрядчика.</p>
+                    <p class="review-text">Второй год подряд обращаемся в АИР для обслуживания инженерных сетей. Оперативная работа, отзывчивая команда. Рекомендуем как надёжного подрядчика.</p>
                     <div class="review-divider"></div>
                     <div class="review-author">
                         <div class="review-avatar a2">МС</div>
@@ -3222,7 +3360,7 @@
                         <i class="fas fa-star"></i>
                     </div>
                     <i class="fas fa-quote-left review-quote"></i>
-                    <p class="review-text">Выбирали подрядчика среди пяти компаний. Мастер Дом предложили оптимальное решение по стоимости и техническим характеристикам. Результат превзошёл ожидания.</p>
+                    <p class="review-text">Выбирали подрядчика среди пяти компаний. АИР предложили оптимальное решение по стоимости и техническим характеристикам. Результат превзошёл ожидания.</p>
                     <div class="review-divider"></div>
                     <div class="review-author">
                         <div class="review-avatar a5">ЕН</div>
@@ -3324,7 +3462,7 @@
                      </div>
                      <div class="form-group">
                          <label class="form-label">E-mail</label>
-                         <input type="email" name="email" class="form-input" placeholder="email@company.ru">
+                         <input type="email" name="email" class="form-input" placeholder="89232231323@mail.ru">
                      </div>
                      <div class="form-group">
                          <label class="form-label">Опишите ваш проект</label>
@@ -3358,7 +3496,7 @@
                     </div>
                     <div>
                         <div class="contact-info-label">E-mail</div>
-                        <div class="contact-info-value">masterdomstroy54@mail.ru</div>
+                        <div class="contact-info-value">89232231323@mail.ru</div>
                         <div class="contact-info-desc">Ответим в течение 2 часов</div>
                     </div>
                 </div>
@@ -3401,8 +3539,8 @@
                         <img src="images/logo.png">
                     </div>
                     <div class="logo-text">
-                        <span class="logo-name">Мастер Дом</span>
-                        <span class="logo-tagline">Промышленная сантехника</span>
+                        <span class="logo-name">АИР</span>
+                        <span class="logo-tagline">Академия инженерных решений</span>
                     </div>
                 </a>
                 <p class="footer-brand-desc">
@@ -3441,7 +3579,7 @@
                 <h4 class="footer-heading">Контакты</h4>
                 <ul class="footer-links">
                     <li><a href="tel:+79232231323"><i class="fas fa-phone"></i> +7 (923) 223-13-23</a></li>
-                    <li><a href="mailto:masterdomstroy54@mail.ru"><i class="fas fa-envelope"></i> masterdomstroy54@mail.ru</a></li>
+                    <li><a href="mailto:89232231323@mail.ru"><i class="fas fa-envelope"></i> 89232231323@mail.ru</a></li>
                     <li><a href="#"><i class="fas fa-location-dot"></i> г. Новосибирск</a></li>
                     <li><a href="#"><i class="fas fa-clock"></i> Пн-Пт: 10:00–19:00</a></li>
                 </ul>
@@ -3450,7 +3588,7 @@
 
         <div class="footer-bottom">
             <div class="footer-copy">
-                © 2024 Мастер Дом. Все права защищены.
+                © 2024 АИР — Академия инженерных решений. Все права защищены.
             </div>
             <div class="footer-bottom-links">
                 <a href="#">Политика конфиденциальности</a>
@@ -3691,7 +3829,26 @@
     });
 });
 </script>
+<script>
+            let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const dots = document.querySelectorAll('.dot');
 
+        function showSlide(index) {
+            if (index >= slides.length) index = 0;
+            if (index < 0) index = slides.length - 1;
+            currentSlide = index;
+            
+            slides.forEach((s, i) => s.classList.toggle('active', i === index));
+            dots.forEach((d, i) => d.classList.toggle('active', i === index));
+        }
+
+        function changeSlide(dir) { showSlide(currentSlide + dir); }
+        function goToSlide(index) { showSlide(index); }
+
+        // Автопрокрутка
+        setInterval(() => changeSlide(1), 5000);
+</script>
 <!-- Модальная галерея -->
     <div id="galleryModal" class="gallery-modal">
         <button class="gallery-close" onclick="closeGallery()">
@@ -3923,11 +4080,11 @@
 {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
-    "name": "Мастер дом",
+    "name": "АИР",
     "description": "Монтаж промышленного отопления и инженерных систем под ключ",
-    "url": "https://masterdom-sibstroy.ru",
+    "url": "https://air-sibstroy.ru",
     "telephone": "+7-923-223-13-23",
-    "email": "masterdomstroy54@mail.ru",
+    "email": "89232231323@mail.ru",
     "address": {
         "@type": "PostalAddress",
         "streetAddress": "ул. Красина, 74",
@@ -3941,7 +4098,7 @@
         "latitude": 55.0084,
         "longitude": 82.9357
     },
-    "image": "https://masterdom-sibstroy.ru/images/logo.jpg",
+    "image": "https://air-sibstroy.ru/images/logo.jpg",
     "priceRange": "$$",
     "openingHours": "Mo-Fr 10:00-19:00",
     "foundingDate": "2014",
